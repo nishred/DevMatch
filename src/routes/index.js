@@ -1,11 +1,18 @@
 const express = require("express")
+const authRouter = require("./authRouter")
+const userRouter = require("./userRouter")
+const profileRouter = require("./profileRouter")
 
-const apiRouter = require("./apiRouter")
-
-const router = express.Router()
-
-
-router.use("/api",apiRouter)
+const apiRouter = express.Router()
 
 
-module.exports = router
+apiRouter.use("/auth",authRouter)
+
+apiRouter.use("/user",userRouter)
+
+apiRouter.use("/profile",profileRouter)
+
+
+module.exports = apiRouter
+
+
