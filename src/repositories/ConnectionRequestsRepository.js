@@ -7,12 +7,15 @@ class ConnectionRequestsRepository
    async createConnection(fromId,toId,status)
    {
         
-       const connection = await ConnectionRequest.create({
+       const connection = new ConnectionRequest({
           fromUserID : fromId,
           toUserId : toId,
           status : status
        })
-       return connection
+
+       const savedConnection =   await connection.save()
+
+       return savedConnection
 
    }
 
@@ -21,13 +24,20 @@ class ConnectionRequestsRepository
    {
   
         const result = await ConnectionRequest.updateOne({_id : id},{$set : {status : status}})   
-        
         return result
-
 
    }
 
 
+   async fetchConnection(fromId,toId)
+   {
+       const connection = await ConnectionRequest.findOne({$or : [{fromUserID : fromId,toUserId:toId},{fromUserID : toId,toUserId : fromUserID}]})
+       if(connection)
+        return true
+    else
+    return false
+     
+   }
 
 }
 

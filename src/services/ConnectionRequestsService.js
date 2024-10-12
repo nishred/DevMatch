@@ -34,6 +34,17 @@ class ConnectionRequestsService
 
 
 
+   async fetchConnection(fromId,toId)
+   {
+
+     const connection = await this.connectionRequestsRepository.fetchConnection(fromId,toId)
+
+     return connection
+
+   }
+
+
+
 
 
 

@@ -33,6 +33,18 @@ timestamps : true
 
 })
 
+connectionRequestSchema.pre("save", function(next)
+{
+
+  const connection = this
+
+  if(connection.fromUserID === connection.toUserId)
+   throw new Error("A connection can't be sent to the same user")
+else
+  next()
+
+})
+
 
 const ConnectionRequest = mongoose.model("ConnectionRequests",connectionRequestSchema)
 
