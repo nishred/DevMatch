@@ -39,6 +39,26 @@ class ConnectionRequestsRepository
      
    }
 
+
+   async getMatches(id)
+   {
+       const matches = await ConnectionRequest.find({$or : [{fromUserID : id,status : "accepted"},{toUserId:id,status : "accepted"}]})
+      
+       return matches
+
+   }
+
+
+   async getRequests(id)
+   {
+
+      const requests = await ConnectionRequest.find({$not : {$or : [{fromUserID : id,status : "accepted"},{toUserId:id,status:"accepted"}]}})
+
+      return requests
+
+
+   }
+
 }
 
 

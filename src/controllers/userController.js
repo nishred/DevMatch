@@ -189,5 +189,6 @@ async function getUser(req,res,next)
 
 
 
+
 module.exports = {createUser,login,getAllUsers,getUser,updateUser,updatePassword}
 

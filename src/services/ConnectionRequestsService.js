@@ -44,8 +44,20 @@ class ConnectionRequestsService
    }
 
 
+   async getMatches(id)
+   {
+
+      return await this.connectionRequestsRepository.getMatches(id)
+
+   }
 
 
+   async getRequests(id)
+   {
+
+     return await this.connectionRequestsRepository.getRequests(id)
+
+   }
 
 
 }
